@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const router = require('./src/Routers/api')
 const bodyParser = require('body-parser');
 
 //Security Midddleware
@@ -42,7 +42,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //Database Connection
-const URL = `mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_USER_PASSWORD}@cluster0.9pvozuw.mongodb.net/CRUD?retryWrites=true&w=majority`;
+const URL = `mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_USER_PASSWORD}@cluster0.9pvozuw.mongodb.net/mern-mod-19?retryWrites=true&w=majority`;
 //const OPTIONS = {useNewUrlParser: true, useUnifiedToplogy: true};
 const OPTIONS = {useNewUrlParser: true};
 mongoose.connect(URL, OPTIONS).then((error)=>{
@@ -50,5 +50,5 @@ mongoose.connect(URL, OPTIONS).then((error)=>{
     //console.log(error);
 })
 
-
+app.use("/api",router);
 module.exports = app;
