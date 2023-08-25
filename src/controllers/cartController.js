@@ -48,7 +48,7 @@ exports.getAllCartList = async (req, res)=>{
 
     exports.deleteCart = async (req, res)=>{
         try {
-            let id = mongoose.Types.ObjectId(req.params.id);
+            let id = req.params.id;
             let query = {_id:id};
             let data = await cartModel.deleteOne(query);
             res.status(200).json({status:"success", data: data})
